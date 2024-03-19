@@ -1,64 +1,67 @@
-from http.server import HTTPServer,BaseHTTPRequestHandler
-
-content='''
-<!doctype html>
+from http.server import HTTPServer, BaseHTTPRequestHandler
+content = """
 <html>
 <head>
-<title> My Web Server</title>
+<title bgcolor="orange">Top 5 IC Design companies</title>
 </head>
 <body>
-<h1>Top Five Revenue from Companies</h1>
-<table border=2>
-<tr>
-<th> Company Name</th>
-<th> Revenue</th>
-<th> Financial Year</th>
-</tr>
-
-<tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
+<table border="2" cellspacing="5" cellpadding="5" width="640" height="463">
+<caption>2Q20 Revenue Ranking Top 5 Ic design company </caption>
+<tr bgcolor="green">
+<td>Rank</td>
+<td>Company</td>
+<td>2Q20 Revenue</td>
+<td>2Q19 Revenue</td>
+<td>Yoy change</td>
 </tr>
 <tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
+<td>1</td>
+<td>Qualcom</td>
+<td>3,807</td>
+<td>3,567</td>
+<td>6.7%</td>
 </tr>
 <tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
+<td>2</td>
+<td>Nvidia</td>
+<td>3,461</td>
+<td>2,352</td>
+<td>47.1%</td>
 </tr>
 <tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
+<td>3</td>
+<td>Mediatek</td>
+<td>2,259</td>
+<td>1,977</td>
+<td>14.2%</td>
 </tr>
 <tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
+<td>4</td>
+<td>AMD</td>
+<td>1,932</td>
+<td>1,531</td>
+<td>26.2%</td>
 </tr>
 <tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
+<td>5/td>
+<td>Novatek</td>
+<td>622</td>
+<td>527</td>
+<td>18.1%</td>
 </tr>
 </table>
 </body>
 </html>
-'''
 
-class MyServer(BaseHTTPRequestHandler):
+"""
+class myhandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        print("Get request received...")
-        self.send_response(200) 
-        self.send_header("content-type", "text/html")       
+        print("request received")
+        self.send_response(200)
+        self.send_header('content-type', 'text/html; charset=utf-8')
         self.end_headers()
         self.wfile.write(content.encode())
-
-print("This is my webserver") 
-server_address =('',8000)
-httpd = HTTPServer(server_address,MyServer)
+server_address = ('',8000)
+httpd = HTTPServer(server_address,myhandler)
+print("my webserver is running...")
 httpd.serve_forever()
